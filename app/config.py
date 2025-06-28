@@ -11,3 +11,4 @@ MYSQL_DB = os.getenv("MYSQL_DB", "test_db")
 
 DATABASE_URL = f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DB}"
 ROOT_DATABASE_URL = f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/"
+NETEASE_API_URL = os.getenv("NETEASE_API_URL", "http://localhost:3000")
