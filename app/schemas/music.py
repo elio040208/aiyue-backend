@@ -8,7 +8,6 @@ class SongOut(BaseModel):
     album: str
     cover_url: str = None
     duration: int = None
-    audio_url: str = None
 
     class Config:
         from_attributes = True
