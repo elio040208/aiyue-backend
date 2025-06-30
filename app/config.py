@@ -15,3 +15,7 @@ NETEASE_API_URL = os.getenv("NETEASE_API_URL", "http://localhost:3000")
 
 OPENAI_BASE_URL=os.getenv("OPENAI_BASE_URL", "https://api.siliconflow.cn/v1")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+
+AUDIO_ORIG_DIR = os.getenv("ORIGIN_DIR", "static/audio/orig")
+AUDIO_VOC_DIR = os.getenv("VOCAL_DIR", "static/audio/voc")
+AUDIO_ACC_DIR = os.getenv("ACCOMPANIMENT_DIR", "static/audio/acc")

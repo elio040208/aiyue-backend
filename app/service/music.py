@@ -27,6 +27,18 @@ def get_audio_url(source_id: int) -> str:
         print(f"获取歌曲 {source_id} 播放地址失败：{e}")
         return ""
 
+def download_audio(url: str, save_path: str) -> bool:
+    try:
+        with requests.get(url, stream=True) as r:
+            r.raise_for_status()
+            with open(save_path, "wb") as f:
+                for chunk in r.iter_content(chunk_size=8192):
+                    f.write(chunk)
+        return True
+    except Exception as e:
+        print(f"下载音频失败：{e}")
+        return False
+
 def get_lyric(source_id: int) -> str:
     try:
         res = requests.get(f"{NETEASE_API_URL}/lyric", params={"id": source_id})
