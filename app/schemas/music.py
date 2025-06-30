@@ -1,3 +1,4 @@
+from typing import List
 from pydantic import BaseModel
 
 class SongOut(BaseModel):
@@ -11,3 +12,11 @@ class SongOut(BaseModel):
 
     class Config:
         from_attributes = True
+
+class LyricLine(BaseModel):
+    time: str
+    text: str
+
+class RewriteLyricRequest(BaseModel):
+    lyric: List[LyricLine]
+    instruction: str
