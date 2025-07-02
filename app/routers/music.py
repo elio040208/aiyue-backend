@@ -1,7 +1,8 @@
-from fastapi import APIRouter, Depends, HTTPException, Request, BackgroundTasks
+from fastapi import APIRouter, Depends, HTTPException, Request, BackgroundTasks, Body
 from sqlalchemy.orm import Session
 from typing import List
 import os
+import requests
 
 from app.config import AUDIO_ORIG_DIR, AUDIO_VOC_DIR, AUDIO_ACC_DIR
 from app.database import SessionLocal
@@ -88,3 +89,12 @@ def rewrite_song_lyric(request: RewriteLyricRequest):
         return {"result": result}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"模型输出格式错误：{e}")
+
+@router.post("/generate_audio")
+def generate(data: dict = Body(...)):
+    try:
+        resp = requests.post("http://8.149.130.118:6000/run_inference", json=data, timeout=180)
+        resp.raise_for_status()
+        return resp.json()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"推理服务调用失败: {e}")
